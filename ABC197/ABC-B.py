@@ -2,20 +2,16 @@ import sys
 import io
 
 _INPUT = """\
-5 5 4 2
-.#..#
-#.###
-##...
-#..#.
-#.###
+4 4 2 2
+##..
+...#
+#.#.
+.#.#
 """
 sys.stdin = io.StringIO(_INPUT)
 
 h, w, x, y = map(int, input().split())
-s = []
-for _ in range(h):
-    c = input()
-    s.append(c)
+s = [input() for _ in range(h)]
 
 x -= 1
 y -= 1

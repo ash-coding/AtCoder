@@ -19,8 +19,6 @@ ry = (y0 + yn2) / 2
 
 x0 -= rx
 y0 -= ry
-# xn2 -= rx
-# yn2 -= ry
 
 x1 = x0 * math.cos(theta) - y0 * math.sin(theta) + rx
 y1 = x0 * math.sin(theta) + y0 * math.cos(theta) + ry

@@ -3,11 +3,10 @@ import io
 
 _INPUT = """\
 3
-1 5 7
+10 10 10
 """
 sys.stdin = io.StringIO(_INPUT)
 
-import itertools
 n = int(input())
 A = list(map(int, input().split()))
 
@@ -15,21 +14,17 @@ ans = 0
 for x in A:
     ans ^= x
 
-for i in range(1, n):
-    for x in itertools.combinations(range(1, n), i):
-        temp = []
-        c = 0
-        for j, a in enumerate(A):
-            if j in x:
-                temp.append(c)
-                c = a
-            else:
-                c |= a
-            if j == n - 1:
-                temp.append(c)
-        c = 0
-        for y in temp:
-            c ^= y
-        ans = min(ans, c)
-print(ans)
+for i in range(1, pow(2, n - 1)):
+    ored = A[-1]
+    xored = 0
+    for j in range(n - 1):
+        if i >> j & 1:
+            xored ^= ored
+            ored = A[- j - 2]
+        else:
+            ored |= A[- j - 2]
+    xored ^= ored
+    if xored < ans:
+        ans = xored
 
+print(ans)
